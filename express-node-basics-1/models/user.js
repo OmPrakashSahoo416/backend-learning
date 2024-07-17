@@ -6,11 +6,17 @@ const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema(
     {
+        id: String,
         name: String,
-        email: String,
         profilePic: String,
 
     }
 );
+
+// const User = mongoose.model('user',userSchema);
+module.exports = mongoose.model("User", userSchema);
+
+
+
 
 // to use the model anywhere in the code 
