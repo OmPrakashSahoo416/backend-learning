@@ -1,8 +1,40 @@
 
 <div class="dashboardPage">
+    <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; "><b>Dashboard</b></p>
 
-<h6 style="color: rgb(119, 119, 119);">Welcome,</h6>
+<h6 style="margin-top: 50px; color: rgb(119, 119, 119);">Welcome,</h6>
 <h3 style="margin-top:0px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color:darkcyan">{{name}}</h3>
 {{!-- <h6 style="margin-top:10px;">View your books</h6> --}}
+
+{{#if stories}}
+
+    <table >
+        <thead>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Author</th>
+            <th>Last Modified</th>
+        </thead>
+        <tbody>
+            {{#each stories}}
+                <tr>
+                    <td><a href="/stories/{{_id}}" >{{title}}</a></td>
+                    <td>{{body}}</td>
+                    <td>{{author}}</td>
+                    <td>{{createdAt}}</td>
+                </tr>
+
+
+
+            {{/each}}
+        </tbody>
+
+    </table>
+
+
+{{else}}
+<p style="margin-top: 25px;">You have no stories ...</p>
+
+{{/if}}
 
 </div>

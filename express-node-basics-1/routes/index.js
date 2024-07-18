@@ -3,6 +3,9 @@ const router = express.Router();
 const {ensureAuth, ensureGuest} = require("../middleware/auth")
 
 
+const Story = require("../models/story");
+
+
 // route @ /login
 router.get('/login', ensureGuest, (req, res) => {
     res.render("login", {
@@ -23,8 +26,19 @@ router.get('/', ensureGuest, (req, res) => {
     res.render("home");
 })
 // route @ /dashboard
-router.get('/dashboard', ensureAuth, (req, res) => {
-    res.render("dashboard", {name:req.user.name, layout:"dashboard"});
+router.get('/dashboard', ensureAuth, async (req, res) => {
+
+     try {
+
+        const stories = await Story.find({author:req.user.name}).lean();
+
+        res.render("dashboard", {name:req.user.name, stories:stories, layout:"dashboard"});
+        
+     } catch (error) {
+
+        console.error(error);
+        
+     }
 })
 
 
