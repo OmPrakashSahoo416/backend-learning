@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const mongoose = require("mongoose")
 const {ensureAuth} = require("../middleware/auth")
 
 
@@ -24,6 +25,23 @@ router.post("/", ensureAuth, async (req, res, cb) => {
     }
     
 })
+
+// to show public posts in a page 
+router.get("/publicStories", ensureAuth, async (req, res, next) => {
+    const stories = await Story.find().lean();
+    res.render("publicStories", {stories:stories, profile:req.user.profilePic, layout:"dashboard"})
+
+})
+
+router.get(`/:id`, async (req, res, next) => {
+    const ID = req.params.id;
+
+    // to match the id with the url so that only that contents are visible when we click on 
+    const story = await Story.find({_id:ID}).lean();
+    console.log(story)
+    res.render("stories/story", {story:story, profile:req.user.profilePic, layout:"dashboard"})
+})
+
 
 
 

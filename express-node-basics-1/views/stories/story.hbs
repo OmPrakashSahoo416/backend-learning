@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story</title>
+</head>
+<body>
+    
+    {{#if story}}
+    {{#each story}}
+                
+                    <div class="storyContents">
+
+                    <h2 style="margin-top: 0; margin-bottom:0;">{{title}}</h2>
+                    <p style="margin-bottom: 0;">{{author}} {{createdAt}}</p>
+                    <hr style="border: 1px solid black; width:100%"></hr>
+                    <p>{{body}}</p>
+                    </div>
+                
+
+
+
+            {{/each}}
+    {{/if}}
+    
+</body>
+</html>

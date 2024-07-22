@@ -1,0 +1,39 @@
+<h3 style="margin-left:200px">Public Stories</h3>
+    <div class="publicStoriesTable" >
+
+    {{#if stories}}
+
+    <table >
+        <thead>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Author</th>
+            <th>Last Modified</th>
+        </thead>
+        <tbody >
+            {{#each stories}}
+            
+                
+                <tr class="tableBody">
+                    
+                    <td >{{title}}</td>
+                    <td class="storyContent">{{body}}</td>
+                    <td>{{author}}</td>
+                    <td>{{createdAt}}</td>
+                    <td><a href="/stories/{{_id}}">Read more</a></td>
+                </tr>
+            
+
+
+
+            {{/each}}
+        </tbody>
+
+    </table>
+
+
+{{else}}
+<p style="margin-top: 25px;">No stories to display</p>
+
+{{/if}}
+</div>

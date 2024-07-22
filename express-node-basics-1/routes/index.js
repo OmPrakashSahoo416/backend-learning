@@ -31,14 +31,36 @@ router.get('/dashboard', ensureAuth, async (req, res) => {
      try {
 
         const stories = await Story.find({author:req.user.name}).lean();
+        // const profile = req.user.profilePic
+        // console.log(req.user)
 
-        res.render("dashboard", {name:req.user.name, stories:stories, layout:"dashboard"});
+        res.render("dashboard", {name:req.user.name, stories:stories, profile:req.user.profilePic,  layout:"dashboard"});
+        
+     } catch (error) {
+        // console.log(req.user.id)
+
+        console.error(error);
+        
+     }
+})
+
+router.get("/dashboard/delete/:id", async (req, res) => {
+    const storyid = req.params.id;
+    const story = await Story.deleteOne({_id:storyid}).lean();
+    try {
+
+        const stories = await Story.find({author:req.user.name}).lean();
+
+        res.render("dashboard", {name:req.user.name, stories:stories, profile:req.user.profilePic, layout:"dashboard"});
         
      } catch (error) {
 
         console.error(error);
         
      }
+
+
+
 })
 
 
