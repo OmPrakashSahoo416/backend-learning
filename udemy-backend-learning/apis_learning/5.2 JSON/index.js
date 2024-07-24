@@ -24,7 +24,7 @@ app.post("/recipe", (req, res) => {
   const obj = element[0];
   res.render("index.ejs", {protein:obj.ingredients.protein.name, proteinPreparation:obj.ingredients.protein.preparation, salsa:obj.ingredients.salsa.name})
 
-  //Step 3: Write your code here to make this behave like the solution website.
+  //Step 3: Write your code here to make this behave like the solution website.ude
   //Step 4: Add code to views/index.ejs to use the recieved recipe object.
 });
 
