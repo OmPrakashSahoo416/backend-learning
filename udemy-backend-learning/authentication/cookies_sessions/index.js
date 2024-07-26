@@ -109,6 +109,17 @@ app.post("/login", passport.authenticate('local', {
   
 });
 
+// logout of the session 
+app.get("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect("/")
+    }
+  })
+})
+
 
 // new passport strategy 
 passport.use(new Strategy(async function verify(username, password, cb) {
