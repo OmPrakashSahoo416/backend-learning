@@ -55,7 +55,7 @@ app.get("/register", (req, res) => {
   res.render("register.ejs");
 });
 
-app.get("/logout", (req, res) => {
+app.get("/logout", (req, res, next) => {
   req.logout(function (err) {
     if (err) {
       return next(err);
@@ -69,7 +69,7 @@ app.get("/secrets", (req, res) => {
   if (req.isAuthenticated()) {
     res.render("secrets.ejs");
   } else {
-    res.redirect("/login");
+    res.redirect("/");
   }
 });
 
@@ -113,7 +113,7 @@ app.post("/register", async (req, res) => {
     ]);
 
     if (checkResult.rows.length > 0) {
-      req.redirect("/login");
+      req.redirect("/");
     } else {
       bcrypt.hash(password, saltRounds, async (err, hash) => {
         if (err) {
